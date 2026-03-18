@@ -2,7 +2,7 @@ README
 Changes
 Copying
 lib/Safe/Hole.pm
-lib/Safe/Hole.xs
+Hole.xs
 Makefile.PL
 MANIFEST
 t/00-load.t

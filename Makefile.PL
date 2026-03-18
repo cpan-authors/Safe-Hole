@@ -31,5 +31,5 @@ WriteMakefile(
             },
         },
     },
-    clean => { FILES => 'Safe-Hole-*' },
+    clean => { FILES => 'Safe-Hole-* *.o' },
 );
