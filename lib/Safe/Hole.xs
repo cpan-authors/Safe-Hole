@@ -9,6 +9,7 @@ extern "C" {
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
+#include "ppport.h"
 #ifdef __cplusplus
 }
 #endif
@@ -80,7 +81,7 @@ PPCODE:
     GvHV(gv) = (HV*)SvREFCNT_inc(PL_defstash);
     PUSHMARK(SP);
 
-    perl_call_sv(codesv, GIMME);
+    call_sv(codesv, GIMME);
     SPAGAIN; /* for the PUTBACK added by xsubpp */
     LEAVE;
 

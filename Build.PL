@@ -5,6 +5,7 @@ use Module::Build;
 my $builder = Module::Build->new(
     module_name       => 'Safe::Hole',
     dist_version_from => 'lib/Safe/Hole.pm',
+    include_dirs      => ['.'],
     abstract_from     => 'lib/Safe/Hole.pm',
     dist_abstract     => 'lib/Safe/Hole.pm',
     license           => 'perl',
