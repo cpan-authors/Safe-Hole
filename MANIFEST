@@ -4,7 +4,6 @@ Copying
 lib/Safe/Hole.pm
 lib/Safe/Hole.xs
 Build.PL
-cpanfile
 MANIFEST
 META.yml
 t/00-load.t
