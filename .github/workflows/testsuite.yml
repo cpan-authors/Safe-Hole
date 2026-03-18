@@ -26,12 +26,12 @@ jobs:
         uses: perl-actions/install-with-cpm@v1
         with:
           cpanfile: "cpanfile"
-      - name: Build.PL
-        run: perl Build.PL
-      - name: Build
-        run: ./Build
-      - name: Build test
-        run: ./Build test
+      - name: Makefile.PL
+        run: perl Makefile.PL
+      - name: make
+        run: make
+      - name: make test
+        run: make test
 
   disttest:
     env:
@@ -50,10 +50,10 @@ jobs:
         uses: perl-actions/install-with-cpm@v1
         with:
           cpanfile: "cpanfile"
-      - name: Build.PL
-        run: perl Build.PL
-      - name: Build disttest
-        run: ./Build disttest
+      - name: Makefile.PL
+        run: perl Makefile.PL
+      - name: make disttest
+        run: make disttest
 
   perl-versions:
     runs-on: ubuntu-latest
@@ -96,9 +96,9 @@ jobs:
         with:
           sudo: false
           cpanfile: "cpanfile"
-      - run: perl Build.PL
-      - run: ./Build
-      - run: ./Build test
+      - run: perl Makefile.PL
+      - run: make
+      - run: make test
 
   macOS:
     needs: [ubuntu, linux, windows]
@@ -121,9 +121,9 @@ jobs:
         with:
           sudo: false
           cpanfile: "cpanfile"
-      - run: perl Build.PL
-      - run: ./Build
-      - run: ./Build test
+      - run: perl Makefile.PL
+      - run: make
+      - run: make test
 
   windows:
     needs: [ubuntu, linux]
@@ -147,9 +147,9 @@ jobs:
         with:
           sudo: false
           cpanfile: "cpanfile"
-      - name: perl Build.PL
-        run: perl Build.PL
-      - name: Build
-        run: perl Build
-      - name: Run Tests
-        run: perl Build test
+      - name: perl Makefile.PL
+        run: perl Makefile.PL
+      - name: make
+        run: gmake
+      - name: make test
+        run: gmake test
