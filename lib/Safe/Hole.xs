@@ -52,7 +52,7 @@ PPCODE:
 	     (magic = mg_find(opmask, '~')) &&
 	      magic->mg_ptr &&
 	      !strncmp(magic->mg_ptr,"Safe::Hole opmask",17) ) {	
-	    if ( saved_PL_op_mask = magic->mg_obj ) {
+	    if ( (saved_PL_op_mask = magic->mg_obj) ) {
 		PL_op_mask = SvPVX(saved_PL_op_mask);
 	    } else 	{
 		PL_op_mask = NULL;
@@ -81,7 +81,7 @@ PPCODE:
     GvHV(gv) = (HV*)SvREFCNT_inc(PL_defstash);
     PUSHMARK(SP);
 
-    call_sv(codesv, GIMME);
+    call_sv(codesv, GIMME_V);
     SPAGAIN; /* for the PUTBACK added by xsubpp */
     LEAVE;
 
