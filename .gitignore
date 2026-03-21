@@ -5,3 +5,5 @@
 /blib/*
 /lib/Safe/Hole.c
 /lib/Safe/Hole.o
+/Makefile
+/MANIFEST.bak

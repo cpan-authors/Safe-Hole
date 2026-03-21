@@ -1,12 +1,14 @@
-README
 Changes
 Copying
-lib/Safe/Hole.pm
 Hole.xs
+lib/Safe/Hole.pm
 Makefile.PL
 MANIFEST
+MANIFEST.SKIP
+ppport.h
+README.md
 t/00-load.t
 t/01-hole.t
+t/02-wrap-objects.t
 t/98-pod-coverage.t
 t/99-pod.t
-ppport.h

@@ -18,7 +18,7 @@ require DynaLoader;
 # Do not simply export all your public functions/methods/constants.
 @EXPORT = qw(
 );
-$VERSION = '0.14';
+$VERSION = '0.15';
 
 bootstrap Safe::Hole $VERSION;
 
