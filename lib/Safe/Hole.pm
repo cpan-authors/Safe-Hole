@@ -9,14 +9,14 @@ use strict;
 use warnings;
 
 require Exporter;
-require DynaLoader;
 
-our @ISA       = qw(Exporter DynaLoader);
+our @ISA       = qw(Exporter);
 our @EXPORT    = qw();
 our @EXPORT_OK = qw();
 our $VERSION   = '0.15';
 
-bootstrap Safe::Hole $VERSION;
+use XSLoader;
+XSLoader::load( 'Safe::Hole', $VERSION );
 
 sub new {
     my ( $class, $args ) = @_;
