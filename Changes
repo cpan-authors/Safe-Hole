@@ -1,5 +1,22 @@
 Revision history for Perl extension Safe::Hole.
 
+0.16 Mar 22 2026
+
+  [Bug Fixes]
+  - Fix POD typos: "dinamically" → "dynamically", "occured" → "occurred",
+    "constrtucted" → "constructed", "refered" → "referred to",
+    "assuption" → "assumption" (PR #13)
+
+  [Improvements]
+  - Switch from DynaLoader to XSLoader for faster, simpler XS loading
+    (PR #14)
+  - Modernize Hole.pm preamble: use 'use 5.014' instead of
+    'require 5.005', add 'use warnings', replace 'use vars' with 'our'
+    declarations (PR #13)
+
+  [Maintenance]
+  - Reformat changelog for consistent style and fix historical typos
+
 0.15 Mar 20 2026
 
   [Bug Fixes]
