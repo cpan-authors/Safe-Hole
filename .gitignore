@@ -1,9 +1,17 @@
-/Build
-/MYMETA.json
-/MYMETA.yml
-/_build/*
-/blib/*
-/lib/Safe/Hole.c
-/lib/Safe/Hole.o
+# ExtUtils::MakeMaker build artifacts
+/Hole.bs
+/Hole.c
+/Hole.o
 /Makefile
 /MANIFEST.bak
+/MYMETA.json
+/MYMETA.yml
+/Safe-Hole-*/
+/blib/
+/pm_to_blib
+
+# Legacy Module::Build artifacts
+/Build
+/_build/
+/lib/Safe/Hole.c
+/lib/Safe/Hole.o
