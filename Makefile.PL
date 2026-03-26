@@ -6,7 +6,7 @@ WriteMakefile(
     NAME             => 'Safe::Hole',
     VERSION_FROM     => 'lib/Safe/Hole.pm',
     ABSTRACT_FROM    => 'lib/Safe/Hole.pm',
-    LICENSE          => 'perl_5',
+    LICENSE          => 'gpl_1',
     AUTHOR           => [
         'Sey Nakajima <nakajima@netstock.co.jp>',
         'Brian McCauley <nobull@cpan.org>',
