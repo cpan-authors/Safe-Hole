@@ -1,5 +1,12 @@
 Revision history for Perl extension Safe::Hole.
 
+0.18 (dev)
+
+  [Bug Fixes]
+  - Wrapped objects now correctly delegate isa(), can(), and DOES() to the
+    original object. Previously these UNIVERSAL methods resolved against the
+    wrapper class (which has no @ISA chain) and always returned false.
+
 0.17 Mar 24 2026
 
   [Improvements]
