@@ -121,6 +121,35 @@ sub wrap {
             );
           }
           unless defined &{ $wrapclass . '::AUTOLOAD' };
+
+        # Delegate UNIVERSAL methods so type checks and introspection
+        # work correctly on wrapped objects.  Without this, isa(), can(),
+        # and DOES() resolve via UNIVERSAL against the wrapper class
+        # (which has no @ISA chain) and return wrong answers.
+        for my $um (qw(isa DOES)) {
+            *{ $wrapclass . '::' . $um } = sub {
+                $self->call(
+                    sub {
+                        my $w = shift;
+                        $w->{OBJ}->$um(@_);
+                    },
+                    @_
+                );
+              }
+              unless defined &{ $wrapclass . '::' . $um };
+        }
+        *{ $wrapclass . '::can' } = sub {
+            my ( $w, $method_name ) = @_;
+            my $has_it = $self->call(
+                sub { $_[0]->{OBJ}->can( $_[1] ) ? 1 : 0 },
+                $w, $method_name
+            );
+            return $has_it
+              ? sub { $_[0]->$method_name( @_[ 1 .. $#_ ] ) }
+              : undef;
+          }
+          unless defined &{ $wrapclass . '::can' };
+
         $result = bless { OBJ => $ref }, $wrapclass;
         if ( defined $typechar && $typechar eq '$' ) {
             ${ $cpt->varglob($word) } = $result;
@@ -220,9 +249,11 @@ Object method.
   If $ref is a code reference, this method returns the anonymous 
 subroutine reference that calls $ref using call() method of Safe::Hole (see 
 above). 
-  If $ref is a class object, this method makes a wrapper class of that object 
-and returns a new object of the wrapper class. Through the wrapper class, 
+  If $ref is a class object, this method makes a wrapper class of that object
+and returns a new object of the wrapper class. Through the wrapper class,
 all original class methods called using call() method of Safe::Hole.
+The wrapper correctly delegates C<isa()>, C<can()>, and C<DOES()> to the
+original object so that type checks and introspection work as expected.
   If $cpt as Safe object and $name as subroutine or scalar name specified, 
 this method works like share() method of Safe. When $ref is a code reference
 $name must like '&subroutine'. When $ref is a object $name must like '$var'.

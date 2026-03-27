@@ -222,4 +222,61 @@ like( $@, qr/type mismatch/, 'wrap() croaks on object with & sigil' );
 eval { $hole->wrap( sub { 1 }, $safe, 'no_sigil' ) };
 like( $@, qr/not a valid name/, 'wrap() croaks on name without sigil' );
 
+###################################
+# isa() delegation on wrapped objects
+###################################
+
+{
+    my $safe_isa = Safe->new;
+    my $hole_isa = Safe::Hole->new( {} );
+
+    my $dog_obj = Dog->new( name => 'Spot' );
+    $hole_isa->wrap( $dog_obj, $safe_isa, '$spot' );
+
+    # isa() should delegate to the original object
+    is( $safe_isa->reval('$spot->isa("Dog")'),    1, 'isa("Dog") true on wrapped Dog' );
+    is( $safe_isa->reval('$spot->isa("Animal")'), 1, 'isa("Animal") true on wrapped Dog (inheritance)' );
+    ok( !$safe_isa->reval('$spot->isa("Counter")'), 'isa("Counter") false on wrapped Dog' );
+    is( $@, '', 'No errors from isa() delegation' );
+}
+
+###################################
+# DOES() delegation on wrapped objects
+###################################
+
+{
+    my $safe_does = Safe->new;
+    my $hole_does = Safe::Hole->new( {} );
+
+    my $cat_obj = Animal->new( name => 'Whiskers', sound => 'purr' );
+    $hole_does->wrap( $cat_obj, $safe_does, '$whiskers' );
+
+    is( $safe_does->reval('$whiskers->DOES("Animal")'), 1, 'DOES("Animal") true on wrapped Animal' );
+    ok( !$safe_does->reval('$whiskers->DOES("Dog")'), 'DOES("Dog") false on wrapped Animal' );
+    is( $@, '', 'No errors from DOES() delegation' );
+}
+
+###################################
+# can() delegation on wrapped objects
+###################################
+
+{
+    my $safe_can = Safe->new;
+    my $hole_can = Safe::Hole->new( {} );
+
+    my $dog_obj = Dog->new( name => 'Buddy' );
+    $hole_can->wrap( $dog_obj, $safe_can, '$buddy' );
+
+    # can() should return truthy for existing methods
+    ok( $safe_can->reval('$buddy->can("fetch")'),  'can("fetch") truthy on wrapped Dog' );
+    ok( $safe_can->reval('$buddy->can("name")'),   'can("name") truthy for inherited method' );
+    ok( !$safe_can->reval('$buddy->can("nonexistent")'), 'can("nonexistent") false' );
+    is( $@, '', 'No errors from can() delegation' );
+
+    # can() return value should be callable through the wrapper
+    my $result = $safe_can->reval('my $m = $buddy->can("fetch"); ref($m)');
+    is( $result, 'CODE', 'can() returns a CODE ref' );
+    is( $@, '', 'No error checking ref type of can() result' );
+}
+
 done_testing();

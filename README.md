@@ -76,9 +76,11 @@ Safe::Hole - make a hole to the original main compartment in the Safe compartmen
       If $ref is a code reference, this method returns the anonymous 
     subroutine reference that calls $ref using call() method of Safe::Hole (see 
     above). 
-      If $ref is a class object, this method makes a wrapper class of that object 
-    and returns a new object of the wrapper class. Through the wrapper class, 
+      If $ref is a class object, this method makes a wrapper class of that object
+    and returns a new object of the wrapper class. Through the wrapper class,
     all original class methods called using call() method of Safe::Hole.
+    The wrapper correctly delegates `isa()`, `can()`, and `DOES()` to the
+    original object so that type checks and introspection work as expected.
       If $cpt as Safe object and $name as subroutine or scalar name specified, 
     this method works like share() method of Safe. When $ref is a code reference
     $name must like '&subroutine'. When $ref is a object $name must like '$var'.
