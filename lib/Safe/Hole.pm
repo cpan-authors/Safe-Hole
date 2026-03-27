@@ -1,6 +1,7 @@
 # Safe::Hole - make a hole to the original main compartment in the Safe compartment
 # Copyright 1999-2001, Sey Nakajima, All rights reserved.
-# This program is free software under the GPL.
+# This program is free software; you can redistribute it and/or
+# modify it under the same terms as Perl itself.
 package Safe::Hole;
 
 use 5.014;
