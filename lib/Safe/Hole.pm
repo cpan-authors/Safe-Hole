@@ -170,6 +170,8 @@ sub wrap {
 1;
 __END__
 
+=for markdown [![cpan-authors/Safe-Hole](https://github.com/cpan-authors/Safe-Hole/actions/workflows/testsuite.yml/badge.svg)](https://github.com/cpan-authors/Safe-Hole/actions/workflows/testsuite.yml)
+
 =head1 NAME
 
 Safe::Hole - make a hole to the original main compartment in the Safe compartment
