@@ -29,7 +29,9 @@ static SV* _get_current_opmask() {
     return newRV_noinc(opmask);
 }
 
-MODULE = Safe::Hole		PACKAGE = Safe::Hole		
+MODULE = Safe::Hole		PACKAGE = Safe::Hole
+
+PROTOTYPES: DISABLE
 
 void
 _hole_call_sv(stashref, opmask, codesv)
