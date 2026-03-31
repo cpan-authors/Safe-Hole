@@ -2,6 +2,8 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
+my $version = MM->parse_version('lib/Safe/Hole.pm');
+
 WriteMakefile(
     NAME             => 'Safe::Hole',
     VERSION_FROM     => 'lib/Safe/Hole.pm',
@@ -16,6 +18,14 @@ WriteMakefile(
     INC              => '-I.',
     TEST_REQUIRES    => {
         'Test::More' => '0.40',
+    },
+    META_ADD => {
+        provides => {
+            'Safe::Hole' => {
+                file    => 'lib/Safe/Hole.pm',
+                version => $version,
+            },
+        },
     },
     META_MERGE => {
         'meta-spec' => { version => 2 },
