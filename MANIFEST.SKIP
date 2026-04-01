@@ -8,6 +8,10 @@
 ^README$
 ^\.perltidyrc$
 
+# ExtUtils::MakeMaker build artifacts
+^Hole\.[bco]$
+^Safe-Hole-
+
 # Legacy Module::Build artifacts
 ^_build/
 ^Build$
