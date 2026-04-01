@@ -300,3 +300,12 @@ Todd Rinaldo <toddr@cpan.org> (Maintenance)
 =head1 SEE ALSO
 
 Safe(3).
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 1999-2001 Sey Nakajima.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+See L<https://dev.perl.org/licenses/> for more information.

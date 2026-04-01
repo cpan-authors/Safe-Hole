@@ -1,3 +1,5 @@
+[![cpan-authors/Safe-Hole](https://github.com/cpan-authors/Safe-Hole/actions/workflows/testsuite.yml/badge.svg)](https://github.com/cpan-authors/Safe-Hole/actions/workflows/testsuite.yml)
+
 # NAME
 
 Safe::Hole - make a hole to the original main compartment in the Safe compartment
@@ -122,3 +124,12 @@ Todd Rinaldo <toddr@cpan.org> (Maintenance)
 # SEE ALSO
 
 Safe(3).
+
+# COPYRIGHT AND LICENSE
+
+Copyright 1999-2001 Sey Nakajima.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+See [https://dev.perl.org/licenses/](https://dev.perl.org/licenses/) for more information.
