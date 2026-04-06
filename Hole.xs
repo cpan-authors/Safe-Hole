@@ -15,7 +15,7 @@ extern "C" {
 }
 #endif
 
-#define OP_MASK_BUF_SIZE (MAXO + 100)
+#define OP_MASK_BUF_SIZE MAXO
 
 /* A reference to a dummy string with the real opmask, if any, attached as magic */
 
